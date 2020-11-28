@@ -5,7 +5,6 @@
 // import './standalone-tokens.css';
 import { ICodeEditorService } from '../../browser/services/codeEditorService.js';
 import { OpenerService } from '../../browser/services/openerService.js';
-import { DiffNavigator } from '../../browser/widget/diffNavigator.js';
 import {
   EditorOptions,
   ConfigurationChangedEvent,
