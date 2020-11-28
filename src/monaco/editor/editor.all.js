@@ -15,7 +15,6 @@ import './contrib/cursorUndo/cursorUndo.js';
 import './contrib/find/findController.js';
 import './contrib/folding/folding.js';
 import './contrib/fontZoom/fontZoom.js';
-import './contrib/gotoSymbol/goToCommands.js';
 import './contrib/gotoError/gotoError.js';
 import './contrib/inPlaceReplace/inPlaceReplace.js';
 import './contrib/linesOperations/linesOperations.js';

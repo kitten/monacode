@@ -43,42 +43,33 @@ import { Range } from '../../common/core/range.js';
 import { IModelService } from '../../common/services/modelService.js';
 import { CancellationToken } from '../../../base/common/cancellation.js';
 import { ITextModelService } from '../../common/services/resolverService.js';
-import { OutlineModel, OutlineElement } from '../documentSymbols/outlineModel.js';
 import { values } from '../../../base/common/collections.js';
 import { CommandsRegistry } from '../../../platform/commands/common/commands.js';
 import { assertType } from '../../../base/common/types.js';
 export function getDocumentSymbols(document, flat, token) {
-    return __awaiter(this, void 0, void 0, function () {
-        var model, roots, _i, _a, child, flatEntries;
-        return __generator(this, function (_b) {
-            switch (_b.label) {
-                case 0: return [4 /*yield*/, OutlineModel.create(document, token)];
-                case 1:
-                    model = _b.sent();
-                    roots = [];
-                    for (_i = 0, _a = values(model.children); _i < _a.length; _i++) {
-                        child = _a[_i];
-                        if (child instanceof OutlineElement) {
-                            roots.push(child.symbol);
-                        }
-                        else {
-                            roots.push.apply(roots, values(child.children).map(function (child) { return child.symbol; }));
-                        }
-                    }
-                    flatEntries = [];
-                    if (token.isCancellationRequested) {
-                        return [2 /*return*/, flatEntries];
-                    }
-                    if (flat) {
-                        flatten(flatEntries, roots, '');
-                    }
-                    else {
-                        flatEntries = roots;
-                    }
-                    return [2 /*return*/, flatEntries.sort(compareEntriesUsingStart)];
-            }
-        });
-    });
+    var model, roots, _i, _a, child, flatEntries;
+    model = _b.sent();
+    roots = [];
+    for (_i = 0, _a = values(model.children); _i < _a.length; _i++) {
+        child = _a[_i];
+        if (child instanceof OutlineElement) {
+            roots.push(child.symbol);
+        }
+        else {
+            roots.push.apply(roots, values(child.children).map(function (child) { return child.symbol; }));
+        }
+    }
+    flatEntries = [];
+    if (token.isCancellationRequested) {
+        return flatEntries;
+    }
+    if (flat) {
+        flatten(flatEntries, roots, '');
+    }
+    else {
+        flatEntries = roots;
+    }
+    return flatEntries.sort(compareEntriesUsingStart);
 }
 function compareEntriesUsingStart(a, b) {
     return Range.compareRangesUsingStarts(a.range, b.range);

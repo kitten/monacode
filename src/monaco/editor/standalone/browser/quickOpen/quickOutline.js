@@ -30,7 +30,6 @@ var __extends =
   })();
 // import './quickOutline.css';
 import '../../../../base/browser/ui/codiconLabel/codiconLabel.js'; // The codicon symbol styles are defined here and must be loaded
-import '../../../contrib/documentSymbols/outlineTree.js'; // The codicon symbol colors are defined here and must be loaded
 import { CancellationToken } from '../../../../base/common/cancellation.js';
 import { matchesFuzzy } from '../../../../base/common/filters.js';
 import * as strings from '../../../../base/common/strings.js';
