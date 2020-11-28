@@ -1,8 +1,5 @@
 import * as monaco from './src/monaco/editor/editor.main.js';
 
-import prettier from './src/prettier.js';
-import prettierBabel from './src/prettier-babel.js';
-
 const sheet = document.createElement('style');
 document.head.appendChild(sheet);
 
@@ -92,41 +89,6 @@ export default (options) => {
 
   const alt = (e) => (navigator.platform.match('Mac') ? e.metaKey : e.ctrlKey);
   const hotKeys = (e) => {
-    // Cdm + s formats with prettier
-    if (alt(e) && e.keyCode == 83) {
-      e.preventDefault();
-      const val = editor.getValue();
-      const pos = editor.getPosition();
-
-      const prettyVal = prettier.formatWithCursor(val, {
-        parser: 'babel',
-        plugins: prettierBabel,
-        cursorOffset: computeOffset(val, pos),
-      });
-
-      editor.executeEdits('prettier', [
-        {
-          identifier: 'delete',
-          range: editor.getModel().getFullModelRange(),
-          text: '',
-          forceMoveMarkers: true,
-        },
-      ]);
-
-      editor.executeEdits('prettier', [
-        {
-          identifier: 'insert',
-          range: new monaco.Range(1, 1, 1, 1),
-          text: prettyVal.formatted,
-          forceMoveMarkers: true,
-        },
-      ]);
-
-      editor.setSelection(new monaco.Range(0, 0, 0, 0));
-      editor.setPosition(
-        computePosition(prettyVal.formatted, prettyVal.cursorOffset)
-      );
-    }
     // Cmd + p opens the command palette
     if (alt(e) && e.keyCode == 80) {
       editor.trigger('anyString', 'editor.action.quickCommand');
