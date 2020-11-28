@@ -9,6 +9,5 @@ import './standalone/browser/inspectTokens/inspectTokens.js';
 import './standalone/browser/quickOpen/gotoLine.js';
 import './standalone/browser/quickOpen/quickCommand.js';
 import './standalone/browser/quickOpen/quickOutline.js';
-import './standalone/browser/referenceSearch/standaloneReferenceSearch.js';
 import './standalone/browser/toggleHighContrast/toggleHighContrast.js';
 export * from './editor.api.js';
