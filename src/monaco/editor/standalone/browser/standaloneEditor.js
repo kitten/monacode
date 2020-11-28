@@ -22,7 +22,6 @@ import * as standaloneEnums from '../../common/standalone/standaloneEnums.js';
 import { Colorizer } from './colorizer.js';
 import { SimpleEditorModelResolverService } from './simpleServices.js';
 import {
-  StandaloneDiffEditor,
   StandaloneEditor,
 } from './standaloneCodeEditor.js';
 import {
@@ -106,37 +105,7 @@ export function onDidCreateEditor(listener) {
       listener(editor);
     });
 }
-/**
- * Create a new diff editor under `domElement`.
- * `domElement` should be empty (not contain other dom nodes).
- * The editor will read the size of `domElement`.
- */
-export function createDiffEditor(domElement, options, override) {
-  return withAllStandaloneServices(domElement, override || {}, function (
-    services
-  ) {
-    return new StandaloneDiffEditor(
-      domElement,
-      options,
-      services,
-      services.get(IInstantiationService),
-      services.get(IContextKeyService),
-      services.get(IKeybindingService),
-      services.get(IContextViewService),
-      services.get(IEditorWorkerService),
-      services.get(ICodeEditorService),
-      services.get(IStandaloneThemeService),
-      services.get(INotificationService),
-      services.get(IConfigurationService),
-      services.get(IContextMenuService),
-      services.get(IEditorProgressService),
-      null
-    );
-  });
-}
-export function createDiffNavigator(diffEditor, opts) {
-  return new DiffNavigator(diffEditor, opts);
-}
+
 function doCreateModel(value, languageSelection, uri) {
   return StaticServices.modelService
     .get()
@@ -330,8 +299,6 @@ export function createMonacoEditorAPI() {
     // methods
     create: create,
     onDidCreateEditor: onDidCreateEditor,
-    createDiffEditor: createDiffEditor,
-    createDiffNavigator: createDiffNavigator,
     createModel: createModel,
     setModelLanguage: setModelLanguage,
     setModelMarkers: setModelMarkers,

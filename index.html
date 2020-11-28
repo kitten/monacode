@@ -22,10 +22,10 @@ const result = add(x, y)
 `.trim(),
       }
 
-      import(/* window.location.hostname === "localhost"
+      import(window.location.hostname === "localhost"
         ? "./index.js"
         : "./index.min.js"
-      */ './index.min.js').then(module => {
+      ).then(module => {
         // Create a new editor and attatch to the document body
         const editor = module.default({ ...defaults, ...overrides });
 

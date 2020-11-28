@@ -36,7 +36,6 @@ import * as aria from '../../../base/browser/ui/aria/aria.js';
 import { Disposable, toDisposable, DisposableStore } from '../../../base/common/lifecycle.js';
 import { ICodeEditorService } from '../../browser/services/codeEditorService.js';
 import { CodeEditorWidget } from '../../browser/widget/codeEditorWidget.js';
-import { DiffEditorWidget } from '../../browser/widget/diffEditorWidget.js';
 import { InternalEditorAction } from '../../common/editorAction.js';
 import { IEditorWorkerService } from '../../common/services/editorWorkerService.js';
 import { StandaloneKeybindingService, applyConfigurationValues } from './simpleServices.js';
@@ -241,63 +240,3 @@ var StandaloneEditor = /** @class */ (function (_super) {
     return StandaloneEditor;
 }(StandaloneCodeEditor));
 export { StandaloneEditor };
-var StandaloneDiffEditor = /** @class */ (function (_super) {
-    __extends(StandaloneDiffEditor, _super);
-    function StandaloneDiffEditor(domElement, options, toDispose, instantiationService, contextKeyService, keybindingService, contextViewService, editorWorkerService, codeEditorService, themeService, notificationService, configurationService, contextMenuService, editorProgressService, clipboardService) {
-        var _this = this;
-        applyConfigurationValues(configurationService, options, true);
-        var themeDomRegistration = themeService.registerEditorContainer(domElement);
-        options = options || {};
-        if (typeof options.theme === 'string') {
-            options.theme = themeService.setTheme(options.theme);
-        }
-        _this = _super.call(this, domElement, options, clipboardService, editorWorkerService, contextKeyService, instantiationService, codeEditorService, themeService, notificationService, contextMenuService, editorProgressService) || this;
-        _this._contextViewService = contextViewService;
-        _this._configurationService = configurationService;
-        _this._register(toDispose);
-        _this._register(themeDomRegistration);
-        _this._contextViewService.setContainer(_this._containerDomElement);
-        return _this;
-    }
-    StandaloneDiffEditor.prototype.dispose = function () {
-        _super.prototype.dispose.call(this);
-    };
-    StandaloneDiffEditor.prototype.updateOptions = function (newOptions) {
-        applyConfigurationValues(this._configurationService, newOptions, true);
-        _super.prototype.updateOptions.call(this, newOptions);
-    };
-    StandaloneDiffEditor.prototype._createInnerEditor = function (instantiationService, container, options) {
-        return instantiationService.createInstance(StandaloneCodeEditor, container, options);
-    };
-    StandaloneDiffEditor.prototype.getOriginalEditor = function () {
-        return _super.prototype.getOriginalEditor.call(this);
-    };
-    StandaloneDiffEditor.prototype.getModifiedEditor = function () {
-        return _super.prototype.getModifiedEditor.call(this);
-    };
-    StandaloneDiffEditor.prototype.addCommand = function (keybinding, handler, context) {
-        return this.getModifiedEditor().addCommand(keybinding, handler, context);
-    };
-    StandaloneDiffEditor.prototype.createContextKey = function (key, defaultValue) {
-        return this.getModifiedEditor().createContextKey(key, defaultValue);
-    };
-    StandaloneDiffEditor.prototype.addAction = function (descriptor) {
-        return this.getModifiedEditor().addAction(descriptor);
-    };
-    StandaloneDiffEditor = __decorate([
-        __param(3, IInstantiationService),
-        __param(4, IContextKeyService),
-        __param(5, IKeybindingService),
-        __param(6, IContextViewService),
-        __param(7, IEditorWorkerService),
-        __param(8, ICodeEditorService),
-        __param(9, IStandaloneThemeService),
-        __param(10, INotificationService),
-        __param(11, IConfigurationService),
-        __param(12, IContextMenuService),
-        __param(13, IEditorProgressService),
-        __param(14, optional(IClipboardService))
-    ], StandaloneDiffEditor);
-    return StandaloneDiffEditor;
-}(DiffEditorWidget));
-export { StandaloneDiffEditor };

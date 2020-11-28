@@ -4,8 +4,6 @@
  *--------------------------------------------------------------------------------------------*/
 import './browser/controller/coreCommands.js';
 import './browser/widget/codeEditorWidget.js';
-import './browser/widget/diffEditorWidget.js';
-import './browser/widget/diffNavigator.js';
 import './contrib/bracketMatching/bracketMatching.js';
 import './contrib/caretOperations/caretOperations.js';
 import './contrib/caretOperations/transpose.js';
@@ -14,13 +12,10 @@ import './contrib/colorPicker/colorDetector.js';
 import './contrib/comment/comment.js';
 import './contrib/contextmenu/contextmenu.js';
 import './contrib/cursorUndo/cursorUndo.js';
-import './contrib/dnd/dnd.js';
 import './contrib/find/findController.js';
 import './contrib/folding/folding.js';
 import './contrib/fontZoom/fontZoom.js';
-import './contrib/format/formatActions.js';
 import './contrib/gotoSymbol/goToCommands.js';
-import './contrib/gotoSymbol/link/goToDefinitionAtPosition.js';
 import './contrib/gotoError/gotoError.js';
 import './contrib/inPlaceReplace/inPlaceReplace.js';
 import './contrib/linesOperations/linesOperations.js';
